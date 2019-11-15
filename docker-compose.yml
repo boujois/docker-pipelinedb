@@ -1,0 +1,20 @@
+version: "3"
+services:
+  pipelinedb:
+    build: ./pipelinedb/
+    restart: always
+    ports:
+      - "5430:5432"
+    expose:
+      - '5432'
+    environment:
+    - POSTGRES_PASSWORD=mysecretpassword  # TODO this doesn't work
+  app:
+    build: ./app/
+    restart: always
+    ports:
+      - "8088:80"
+    expose:
+      - '80'
+    volumes:
+      - ./app/src:/var/www/html/

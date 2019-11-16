@@ -4,7 +4,7 @@
 
 PipelineDB is an open-source PostgreSQL extension that runs SQL queries continuously on streams, incrementally storing results in tables.
 
-PipelineDB is running locally on port 5430. You can connect via any normal postgres means, including the terminal if you have psql installed.
+PipelineDB is running locally on port 5430. You can connect via any normal Postgres means, including the terminal if you have psql installed.
 
 ## Connect
 

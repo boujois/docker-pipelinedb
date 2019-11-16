@@ -9,6 +9,8 @@ services:
       - '5432'
     environment:
     - POSTGRES_PASSWORD=mysecretpassword  # TODO this doesn't work
+    volumes:
+      - ./pipelinedb/demo_data:/tmp/demo_data/
   app:
     build: ./app/
     restart: always

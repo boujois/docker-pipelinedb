@@ -133,6 +133,84 @@ __Demo View 4__ (Count of entries by name where happy is true):
 
 You should see a table with 2 entries, 3 counts for daniel and 1 for donald.
 
+## Using COPY
+
+`COPY` can be very useful for retroactively populating a continuous view from archival data. Here is an example using Wikipedia page traffic logs (a sample file is included in the `demo_data` folder of this repository).
+
+Wikipedia logs have the following format:
+
+
+      fr.b Special:Recherche/Achille_Baraguey_d%5C%27Hilliers 1 624
+      fr.b Special:Recherche/Acteurs_et_actrices_N 1 739
+      fr.b Special:Recherche/Agrippa_d/%27Aubign%C3%A9 1 743
+      fr.b Special:Recherche/All_Mixed_Up 1 730
+      fr.b Special:Recherche/Andr%C3%A9_Gazut.html 1 737
+
+In the above, the first column `fr.b` is the project name. The following abbreviations are used:
+
+|Name|Abbreviation|
+|----|------------|
+| wikibooks | .b |
+| wiktionary | .d |
+| wikimedia | .m |
+| wikipedia mobile | .mw |
+| wikinews | .n |
+| wikiquote | .q |
+| wikisource | .s |
+| wikiversity | .v |
+| mediawiki | .w |
+
+Projects without a period and a following character are wikipedia projects.
+The second column is the title of the page retrieved, the third column is the number of requests, and the fourth column is the size of the content returned.
+
+Let's make a stream for this data:
+
+    CREATE FOREIGN TABLE wiki_stream (
+          project text,
+          title text,
+          view_count bigint,
+          size bigint)
+    SERVER pipelinedb;
+
+And now a continuous view for aggregation:
+
+    CREATE VIEW wiki_stats AS
+    SELECT
+      project,
+      sum(view_count) AS total_views,
+      sum(size) AS total_bytes_served
+    FROM
+      wiki_stream
+    GROUP BY
+      project;
+
+Now we can use `COPY` on the file located in this repository's `pipelinedb/demo_data` folder, which is mounted in the container as `/tmp/demo_data`
+
+  COPY wiki_stream (project, title, view_count, size) FROM '/tmp/demo_data/wikipedia_sample.txt' WITH DELIMITER ' '
+
+We can then see the top 10 pages (by view count) from our sample data with the following query:
+
+    SELECT *
+    FROM
+      wiki_stats
+    ORDER BY
+      total_views DESC
+    LIMIT 10;
+
+## COPY local data
+
+To use the `COPY` command with local data we need to use `psql` from the terminal. You can test this by running:
+
+    psql --version
+
+If you see something like this, then you have psql installed:
+
+    psql (PostgreSQL) 11.0 (Debian 11.0-1.pgdg90+2)
+
+Now we can use `COPY` to send a local file to our PipelineDB server:
+
+    cat wikipedia_sample.txt | psql -U postgres -h localhost -p 5430 -c "COPY wiki_stream (project, title, view_count, size) FROM STDIN WITH DELIMITER ' ';"
+
 ## Drop streams
 
 To tidy up, you can drop the streams (and all the continuous views that use them) using:

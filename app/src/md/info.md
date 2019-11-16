@@ -10,8 +10,8 @@ PipelineDB is running locally on port 5430. You can connect via any normal postg
 
 Download a Postgres client, such as the following:
 
- * [Postico](https://eggerapps.at/postico/) (MacOSX)
- * [DBeaver](https://dbeaver.io/download/) (Windows, MacOSX, Linux)
+ * [Postico](https://eggerapps.at/postico/) (MacOS)
+ * [DBeaver](https://dbeaver.io/download/) (Windows, MacOS, Linux)
 
 Add the following connection details:
 

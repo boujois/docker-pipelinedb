@@ -1,6 +1,3 @@
-<?php
-$myPDO = new PDO('pgsql:host=pipelinedb;dbname=postgres', 'postgres', 'pipelinedb123');
-?>
 <html>
 <head>
     <title>DB Stats</title>
@@ -20,7 +17,7 @@ $myPDO = new PDO('pgsql:host=pipelinedb;dbname=postgres', 'postgres', 'pipelined
     </thead>
     <tbody>
       <?php
-      $result = $myPDO->query("SELECT * from pipelinedb.views;");
+      $result = $pdo->query("SELECT * from pipelinedb.views;");
       while ($row = $result->fetch()){
         echo "<tr>";
         echo "<td>".$row["id"]."</td>";

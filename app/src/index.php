@@ -4,12 +4,8 @@ chdir(dirname(__FILE__));
 require_once('lib/parsedown.php');
 $Parsedown = new Parsedown();
 
-//require_once('lib/class.print_queue.php');
-// $pq=new printQueue();
-// if($pq->isInstalled()==false){
-//   $pq->install();
-//   die;
-// }
+$pdo = new PDO('pgsql:host=pipelinedb;dbname=postgres', 'postgres', 'pipelinedb123');
+
 
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 $method=strtolower($_SERVER['REQUEST_METHOD']);

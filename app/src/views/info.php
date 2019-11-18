@@ -7,7 +7,7 @@
 <body class="markdown-body">
   <?php
   $markdown=file_get_contents("md/info.md");
-  echo $Parsedown->text($markdown);
+  echo $parsedown->text($markdown);
   ?>
 </body>
 </html>

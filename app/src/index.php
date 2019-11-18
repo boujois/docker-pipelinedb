@@ -1,9 +1,8 @@
 <?php
-
 chdir(dirname(__FILE__));
-require_once('lib/parsedown.php');
-$Parsedown = new Parsedown();
+require 'vendor/autoload.php';
 
+$parsedown = new Parsedown();
 $pdo = new PDO('pgsql:host=pipelinedb;dbname=postgres', 'postgres', 'pipelinedb123');
 
 

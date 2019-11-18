@@ -17,6 +17,7 @@
     </thead>
     <tbody>
       <?php
+      $pdo=$this->get('db');
       $result = $pdo->query("SELECT * from pipelinedb.views;");
       while ($row = $result->fetch()){
         echo "<tr>";

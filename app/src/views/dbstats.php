@@ -1,5 +1,5 @@
 <?php
-$myPDO = new PDO('pgsql:host=pipelinedb;dbname=postgres', 'postgres', '');
+$myPDO = new PDO('pgsql:host=pipelinedb;dbname=postgres', 'postgres', 'pipelinedb123');
 ?>
 <html>
 <head>

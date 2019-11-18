@@ -8,7 +8,7 @@ services:
     expose:
       - '5432'
     environment:
-    - POSTGRES_PASSWORD=mysecretpassword  # TODO this doesn't work
+    - POSTGRES_PASSWORD=pipelinedb123
     volumes:
       - ./pipelinedb/demo_data:/tmp/demo_data/
   app:

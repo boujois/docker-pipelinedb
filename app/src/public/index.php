@@ -7,6 +7,13 @@ require '../vendor/autoload.php';
 $pdo = new PDO('pgsql:host=pipelinedb;dbname=postgres', 'postgres', 'pipelinedb123');
 $parsedown = new Parsedown();
 
+$loader = new \Twig\Loader\FilesystemLoader('templates');
+$twig = new \Twig\Environment($loader, [
+    'cache' => '/tmp',
+    'auto_reload' => true
+]);
+
+
 //$app = new \Slim\App; // production
 
 // development
@@ -21,6 +28,7 @@ $app = new \Slim\App($c);
 $container = $app->getContainer();
 $container['db'] = $pdo;
 $container['parsedown'] = $parsedown;
+$container['twig'] = $twig;
 
 $app->get('/', function (Request $request, Response $response, array $args) {
   require 'views/home.php';

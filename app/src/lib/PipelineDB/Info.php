@@ -1,33 +1,15 @@
 <?php
 namespace PipelineDB;
 
-class Info{
-  private $parsedown;
-
-  public function __construct($container){
-    $this->setParsedown($container["parsedown"]);
-  }
-
-  public function setParsedown($parsedown){
-    $this->parsedown=$parsedown;
-  }
+class Info extends Generic{
 
   public function render(){
-    $response='
-    <html>
-    <head>
-    <title>PipelineDB Information</title>
-    <link rel="stylesheet" type="text/css" href="css/markdown.css"/>
-    <link rel="stylesheet" type="text/css" href="css/tables.css"/>
-    </head>
-    <body class="markdown-body">
-    ';
-    $markdown=file_get_contents("md/info.md");
-    $response.=$this->parsedown->text($markdown);
-    $response.='
-    </body>
-    </html>
-    ';
-    return $response;
+    $raw_markdown=file_get_contents("md/info.md");
+    $formatted_markdown=$this->parsedown->text($raw_markdown);
+    $template = $this->twig->load('markdown.html');
+    return $template->render([
+      'markdown'=>$formatted_markdown,
+      'title'=>'PipelineDB Information'
+    ]);
   }
 }

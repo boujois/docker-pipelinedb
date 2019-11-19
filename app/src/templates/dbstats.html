@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css"/>
+  <link rel="stylesheet" type="text/css" href="css/tables.css"/>
+</head>
+<body>
+  <h1>{{ heading }}</h1>
+
+  <h3>Continuous Views</h3>
+  <table border=1>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Active</th>
+        <th>Query</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in continuous_views %}
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.active }}</td>
+        <td><pre>{{ item.query }}</pre></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</body>
+</html>

@@ -647,9 +647,9 @@
 }
 
 .markdown-body table {
-  display: block;
+  /* display: block; */
   overflow: auto;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .markdown-body table th {

@@ -19,6 +19,7 @@ class ComposerStaticInit7e75373da9813d2b52e9a53680cb01a6
         array (
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'PipelineDB\\' => 11,
         ),
         'I' => 
         array (
@@ -42,6 +43,10 @@ class ComposerStaticInit7e75373da9813d2b52e9a53680cb01a6
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PipelineDB\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/lib/PipelineDB',
         ),
         'Interop\\Container\\' => 
         array (

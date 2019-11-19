@@ -2,5 +2,10 @@
     "require": {
         "slim/slim": "^3.12",
         "erusev/parsedown": "^1.7"
-    }
+    },
+    "autoload": {
+       "psr-4": {
+           "PipelineDB\\" : "lib/PipelineDB"
+       }
+   }
 }

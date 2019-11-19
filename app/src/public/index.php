@@ -30,7 +30,8 @@ $app->get('/dbstats', function (Request $request, Response $response, array $arg
 });
 
 $app->get('/info', function (Request $request, Response $response, array $args) {
-  require 'views/info.php';
+  $info=new \PipelineDB\Info($this);
+  echo $info->render();
 });
 
 

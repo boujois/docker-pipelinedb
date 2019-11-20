@@ -2,7 +2,7 @@
 
 ## Overview
 
-A simple demo of PipelinDB server, with a web frontend. For more information see the [PipelinDB website](https://www.pipelinedb.com/).
+A simple demo of PipelinDB server, with a web frontend. For more information see the [PipelineDB website](https://www.pipelinedb.com/).
 
 Full documentation can be found [here](http://docs.pipelinedb.com/).
 

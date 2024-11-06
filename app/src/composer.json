@@ -2,7 +2,7 @@
     "require": {
         "slim/slim": "^3.12",
         "erusev/parsedown": "^1.7",
-        "twig/twig": "^2.0"
+        "twig/twig": "^3.11"
     },
     "autoload": {
        "psr-4": {
